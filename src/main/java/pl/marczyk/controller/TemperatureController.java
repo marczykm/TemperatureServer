@@ -3,10 +3,10 @@ package pl.marczyk.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.marczyk.domain.TemperatureRepository;
 import pl.marczyk.model.Temperature;
-
-import java.util.List;
+import pl.marczyk.service.ChartData;
+import pl.marczyk.service.DataService;
+import pl.marczyk.service.Dataset;
 
 /**
  * Created by marcin on 14.11.15.
@@ -16,20 +16,15 @@ import java.util.List;
 public class TemperatureController {
 
     @Autowired
-    private TemperatureRepository temperatureRepository;
-
-    @RequestMapping("/all")
-    public Iterable<Temperature> getAll(){
-        return temperatureRepository.findAll();
-    }
+    private DataService dataService;
 
     @RequestMapping("/latest10")
-    public List<Temperature> getLatest10() {
-        return temperatureRepository.findFirst10ByOrderByTimestampDesc();
+    public ChartData getLatest10() {
+        return dataService.getLatestDataWithLabels();
     }
 
     @RequestMapping("/latest")
     public Temperature getLatest() {
-        return temperatureRepository.findFirstByOrderByTimestampDesc();
+        return dataService.getLatestOne();
     }
 }

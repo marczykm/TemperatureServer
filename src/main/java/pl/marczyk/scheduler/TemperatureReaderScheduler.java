@@ -27,12 +27,13 @@ public class TemperatureReaderScheduler {
 
     @Scheduled(fixedRate = 1000)
     public void readTemperature(){
+        LOG.trace("Reading temperature...");
         parser.init("28-0000053bca4a");
         Double temp = null;
         try {
             temp = parser.getTemperature();
             Temperature temperature = new Temperature(new Date(), temp);
-            LOG.debug("Temperature read: " + temperature.getValue());
+            LOG.info("Temperature read: " + temperature.getValue());
             temperatureRepository.save(temperature);
         } catch (Exception e) {
             LOG.error(e.getMessage());
