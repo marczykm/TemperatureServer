@@ -1,11 +1,19 @@
 $(document).ready(function(){
     var ctx = document.getElementById("myChart").getContext("2d");
-    var options = {};
+
     var data;
     var myLineChart;
 
     document.getElementById("myChart").width = window.innerWidth-20;
     document.getElementById("myChart").height = window.innerHeight-20;
+
+    var options = {
+        scaleOverride: true,
+        scaleSteps: 40,
+        scaleStepWidth: 2,
+        scaleStartValue: 20,
+        scaleIntegersOnly: false
+    };
 
     $.get("/api/latest10", function(returnData){
         data = returnData;
