@@ -4,6 +4,9 @@ $(document).ready(function(){
     var data;
     var myLineChart;
 
+    document.getElementById("myChart").width = window.innerWidth-20;
+    document.getElementById("myChart").height = window.innerHeight-20;
+
     $.get("/api/latest10", function(returnData){
         data = returnData;
         myLineChart = new Chart(ctx).Line(data, options);
