@@ -18,7 +18,6 @@ import java.util.Date;
  * Created by marcin on 14.11.15.
  */
 @Component
-@PropertySource("classpath:application.properties")
 public class TemperatureReaderScheduler {
     private final Logger LOG = LogManager.getRootLogger();
 
